@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chase the gayar</title>
+    </head>
+    <body>
+        <h1>Try to catch the Gayar</h1>
+        <p>Move your mouse over the Gayar to catch it!</p>
+        <table border="1">
+            <tr>
+                <td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td><td></td><td></td>
+            </tr>
+        </table>
+
+        <script>
+            const cells = document.querySelectorAll("td");
+            cells.forEach(cell => {cell.width = "100"; cell.height = "100";});
+
+            const gayar = document.createElement("img");
+            gayar.src = "https://i.pinimg.com/736x/50/08/47/50084772cec3342bb9e4b61f5ff4d189.jpg";
+            gayar.width = "100";
+            gayar.height = "100";
+
+            let randomIndex = Math.floor(Math.random() * cells.length);
+
+            cells[randomIndex].appendChild(gayar);
+            gayar.onmouseover = function() {
+            let oldcell = gayar.parentNode;
+                let newCell;
+                do {
+                    newCell = cells[Math.floor(Math.random() * cells.length)];
+                } while (newCell === oldcell);
+            newCell.appendChild(gayar);
+         };
+
+        </script>
+
+</html>
