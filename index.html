@@ -6,6 +6,8 @@
     <body>
         <h1>Try to catch the Gayar</h1>
         <p>Move your mouse over the Gayar to catch it!</p>
+        <button type="button" id="startBtn">click here to start</button>
+        <p id="timer"></p>
         <table border="1">
             <tr>
                 <td></td><td></td><td></td><td></td><td></td>
@@ -20,7 +22,9 @@
                 <td></td><td></td><td></td><td></td><td></td>
             </tr>
         </table>
+            <img src = "https://i.ytimg.com/vi/BmsMIYhWB6I/hqdefault.jpg" width = "200" height = "150">
 
+        
         <script>
             const cells = document.querySelectorAll("td");
             cells.forEach(cell => {cell.width = "100"; cell.height = "100";});
@@ -39,8 +43,33 @@
                 do {
                     newCell = cells[Math.floor(Math.random() * cells.length)];
                 } while (newCell === oldcell);
-            newCell.appendChild(gayar);
+            newCell.appendChild(gayar);}
+        let timerInterval;    
+        document.getElementById("startBtn").onclick = function() {
+        let timeLeft = 10;
+
+
+    clearInterval(timerInterval);
+
+    gayar.remove();
+    let randomIndex = Math.floor(Math.random() * cells.length);
+    cells[randomIndex].appendChild(gayar);
+    
+        
+        timerInterval = setInterval(function() {
+        timeLeft--;
+        document.getElementById("timer").textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            gayar.remove();
+            document.getElementById("timer").textContent ="You will never beat the Gayar";
+
+                        setTimeout(function() {
+               
+            }, 5000);
          };
+        }, 1000);}
+            
 
         </script>
 
